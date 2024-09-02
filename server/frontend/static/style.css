@@ -124,3 +124,18 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.contact_card{
+    /* border: rgb(103, 102, 105) 1.5px solid; */
+    padding: 10px;
+    background-color: rgba(161, 225, 230, 0.808);
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgb(161, 221, 236);
+}
+
+#contact_header{
+    margin: 30px 20px 30px 20px;
+    text-align: center;
+    font-style: italic;
+    font-size: large;
+}
