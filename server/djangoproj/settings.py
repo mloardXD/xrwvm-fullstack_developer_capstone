@@ -28,10 +28,8 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 
-    'https://mnobre24-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/']
-CSRF_TRUSTED_ORIGINS = ['https://mnobre24-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai', 
-'https://mnobre24-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
+ALLOWED_HOSTS = ['localhost', 'https://mnobre24-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/']  # noqa: E501
+CSRF_TRUSTED_ORIGINS = ['https://mnobre24-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai', 'https://mnobre24-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']  # noqa: E501
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
@@ -62,19 +60,19 @@ ROOT_URLCONF = 'djangoproj.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates', 
         'DIRS': [
             os.path.join(BASE_DIR,'frontend/static'), 
             os.path.join(BASE_DIR,'frontend/build'), 
-            os.path.join(BASE_DIR, 'frontend/build/static'),
-            ],
+            os.path.join(BASE_DIR, 'frontend/build/static'), 
+            ], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug', 
+                'django.template.context_processors.request', 
+                'django.contrib.auth.context_processors.auth', 
+                'django.contrib.messages.context_processors.messages', 
             ],
         },
     },
