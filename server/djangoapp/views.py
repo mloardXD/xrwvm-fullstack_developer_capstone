@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 import logging
 import json
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
 
@@ -45,7 +45,7 @@ def login_user(request):
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
     logout(request)
-    data = {"userName":""}
+    data = {"userName": ""}
     return JsonResponse(data)
 # ...
 
@@ -76,19 +76,18 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password, email=email)  # noqa: E501
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
-    else :
+    else:
         data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
 
-#Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
-    if(state == "All"):
+    if (state == "All"):
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/"+state
@@ -99,7 +98,7 @@ def get_dealerships(request, state="All"):
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
-    if(dealer_id):
+    if (dealer_id):
         endpoint = "/fetchReviews/dealer/"+str(dealer_id)
         reviews = get_request(endpoint)
         for review_detail in reviews:
@@ -112,7 +111,7 @@ def get_dealer_reviews(request, dealer_id):
 
 
 def get_dealer_details(request, dealer_id):
-    if(dealer_id):
+    if (dealer_id):
         endpoint = "/fetchDealer/"+str(dealer_id)
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200, "dealer": dealership})
@@ -122,8 +121,8 @@ def get_dealer_details(request, dealer_id):
 
 # Create a `add_review` view to submit a review
 def add_review(request):
-    if(request.user.is_anonymous is False):
-        data = json.loads(request.body)
+    if (request.user.is_anonymous is False):
+        # data = json.loads(request.body)
         try:
             # response = post_review(data)
             return JsonResponse({"status": 200})
@@ -133,11 +132,11 @@ def add_review(request):
         return JsonResponse({"status": 403, "message": "Unauthorized"})
 
 
-#get the list of cars
+# get the list of cars
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if (count == 0):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
