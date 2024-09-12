@@ -45,6 +45,7 @@ def login_user(request):
 def logout_request(request):
     logout(request)
     data = {"userName": ""}
+    print(data)
     return JsonResponse(data)
 # ...
 
